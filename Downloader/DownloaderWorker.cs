@@ -22,8 +22,8 @@ namespace Downloader
 			var guidValue = $"{Guid.NewGuid()}.%(ext)s";
 			var outputFileName = await GetYtdlpFilename(Ytdlp, guidValue, inputData["youtubeLink"] + "");
 
-			await DownloadVideo(Ytdlp, guidValue, Directory.GetCurrentDirectory() + outputFileName, inputData["youtubeLink"] + "");
-			var downloadPath = Directory.GetCurrentDirectory() + outputFileName;
+			await DownloadVideo(Ytdlp, guidValue, Directory.GetCurrentDirectory(), inputData["youtubeLink"] + "");
+			var downloadPath = "\\192.168.0.20\\codaxy\\Praksa\\downloadDir" + Path.DirectorySeparatorChar + outputFileName;
 
 			var response = new DownloaderResponse { DownloadPath = downloadPath };
 

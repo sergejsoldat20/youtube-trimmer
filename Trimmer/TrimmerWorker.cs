@@ -24,8 +24,6 @@ namespace Trimmer
 			var downloadPath = inputData["videoPath"] + "";
 
 			
-			var firstFile = Directory.GetFiles(downloadPath).ToList().First() + "";
-
 
 
 
@@ -33,10 +31,12 @@ namespace Trimmer
             process.StartInfo.FileName = FFMPEG;
             process.StartInfo.RedirectStandardOutput = true;
 
-			var a = Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + Guid.NewGuid() + $".{firstFile.Split(@".")[firstFile.Split(@".").Length - 1]}";
+			Console.WriteLine(Path.GetExtension(downloadPath));
+
+			var extension = Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + Guid.NewGuid() + $".{Path.GetExtension(downloadPath)}";
 
 			
-			var args = new[] { "-i", firstFile, "-ss", from, "-t", length, "-c:v", "copy", "-c:a", "copy", a == null ? "" : a };
+			var args = new[] { "-i", downloadPath, "-ss", from, "-t", length, "-c:v", "copy", "-c:a", "copy", extension };
 			
            
            
